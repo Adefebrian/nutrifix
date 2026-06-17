@@ -234,7 +234,29 @@
 .steps li { display: flex; gap: var(--s3); font-size: 14.5px; line-height: 1.6; color: var(--ink); align-items: flex-start; }
 .step-n { flex-shrink: 0; width: 25px; height: 25px; border-radius: 9px; background: var(--accent); color: #fff; font-size: 12px; font-weight: 700; display: grid; place-items: center; font-feature-settings: "tnum"; }
 .tips { margin-top: var(--s5); padding-top: var(--s5); border-top: 1px solid var(--line); }
-.tip { font-size: 13.5px; color: var(--ink-soft); line-height: 1.5; margin-bottom: var(--s1); }
+.tip { font-size: 13.5px; color: var(--ink-soft); line-height: 1.55; margin-bottom: var(--s2); }
+
+/* Full-width AI recipe (bento) */
+.recipe-full { padding: var(--s7); margin-top: var(--s6); }
+.recipe-full-head { display: flex; flex-direction: column; align-items: flex-start; gap: var(--s2); }
+.recipe-title { font-family: var(--serif); font-size: clamp(24px, 3vw, 32px); font-weight: 600; color: var(--forest); line-height: 1.08; letter-spacing: -0.01em; margin-top: var(--s2); }
+.recipe-desc { font-size: 15px; line-height: 1.6; max-width: 640px; }
+.recipe-full-head .meta-row { margin-top: var(--s2); margin-bottom: 0; }
+.recipe-full-body { display: grid; grid-template-columns: 1.7fr 1fr; gap: var(--s7); margin-top: var(--s7); align-items: start; }
+.steps-grid { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: var(--s5) var(--s6); }
+.steps-grid li { display: flex; gap: var(--s3); align-items: flex-start; }
+.step-tx { font-size: 14.5px; line-height: 1.6; color: var(--ink); }
+.tips-card { background: var(--wash); border: 1px solid var(--line); border-radius: var(--r); padding: var(--s5); position: sticky; top: 88px; }
+.tips-h { display: inline-flex; align-items: center; gap: 7px; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--pine); margin-bottom: var(--s3); }
+.tips-h svg { color: var(--accent); }
+
+@media (max-width: 900px) {
+  .recipe-full-body { grid-template-columns: 1fr; gap: var(--s6); }
+  .tips-card { position: static; }
+}
+@media (max-width: 600px) {
+  .steps-grid { grid-template-columns: 1fr; }
+}
 
 @media (max-width: 880px) {
   .recipe-layout { grid-template-columns: 1fr; gap: var(--s6); }

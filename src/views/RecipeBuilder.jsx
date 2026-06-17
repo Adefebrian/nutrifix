@@ -115,34 +115,45 @@ export default function RecipeBuilder({ items, setItems, needKey }) {
             </button>
             {err && <p className="err-banner" style={{ marginTop: 12 }}>{err}</p>}
           </div>
-
-          <AnimatePresence>
-            {recipe && (
-              <motion.div
-                initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
-                className="card recipe-out"
-              >
-                <span className="pill" style={{ marginBottom: 10 }}><Sparkles size={13} /> AI recipe</span>
-                <h3 style={{ fontSize: 22, marginBottom: 6 }}>{recipe.title}</h3>
-                <p className="muted" style={{ fontSize: 14, marginBottom: 12 }}>{recipe.description}</p>
-                <div className="meta-row">
-                  <span className="pill">⏱ {recipe.time_minutes} min</span>
-                  <span className="pill">{recipe.difficulty}</span>
-                </div>
-                <ol className="steps">
-                  {(recipe.steps || []).map((s, i) => <li key={i}><span className="step-n">{i + 1}</span>{s}</li>)}
-                </ol>
-                {recipe.tips?.length > 0 && (
-                  <div className="tips">
-                    <p className="mini-lbl">Chef tips</p>
-                    {recipe.tips.map((t, i) => <p key={i} className="tip">· {t}</p>)}
-                  </div>
-                )}
-              </motion.div>
-            )}
-          </AnimatePresence>
         </div>
       </div>
+
+      <AnimatePresence>
+        {recipe && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
+            className="card recipe-full"
+          >
+            <div className="recipe-full-head">
+              <span className="pill"><Sparkles size={13} /> AI recipe</span>
+              <h3 className="recipe-title">{recipe.title}</h3>
+              {recipe.description && <p className="recipe-desc muted">{recipe.description}</p>}
+              <div className="meta-row">
+                {recipe.time_minutes != null && <span className="pill">⏱ {recipe.time_minutes} min</span>}
+                {recipe.difficulty && <span className="pill">{recipe.difficulty}</span>}
+              </div>
+            </div>
+
+            <div className="recipe-full-body">
+              <ol className="steps-grid">
+                {(recipe.steps || []).map((s, i) => (
+                  <li key={i}>
+                    <span className="step-n">{i + 1}</span>
+                    <span className="step-tx">{String(s).replace(/^\s*\d+[.)]\s*/, '')}</span>
+                  </li>
+                ))}
+              </ol>
+
+              {recipe.tips?.length > 0 && (
+                <aside className="tips-card">
+                  <p className="tips-h"><ChefHat size={14} /> Chef tips</p>
+                  {recipe.tips.map((t, i) => <p key={i} className="tip">{String(t).replace(/^[·•\-\s]+/, '')}</p>)}
+                </aside>
+              )}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   )
 }
