@@ -1,0 +1,10 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "rewrites": [
+    { "source": "/api/zen/:path*", "destination": "/api/zen/[...path]" },
+    { "source": "/api/off/:path*", "destination": "/api/off/[...path]" },
+    { "source": "/api/edamam/:path*", "destination": "/api/edamam/[...path]" },
+    { "source": "/api/nutritionix/:path*", "destination": "/api/nutritionix/[...path]" },
+    { "source": "/((?!api/).*)", "destination": "/index.html" }
+  ]
+}
